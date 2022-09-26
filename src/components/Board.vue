@@ -8,10 +8,10 @@
       <div>
         bid: {{bid}}
       </div>
-      <router-link :to="`/board/${bid}/c/1`">card 1</router-link>
-      <router-link :to="`/board/${bid}/c/2`">card 2</router-link>
-      <router-link :to="`/board/${bid}/c/3`">card 3</router-link>
-      <router-link :to="`/board/${bid}/c/4`">card 4</router-link>
+      <router-link :to="`/b/${bid}/c/1`">card 1</router-link>
+      <router-link :to="`/b/${bid}/c/2`">card 2</router-link>
+      <router-link :to="`/b/${bid}/c/3`">card 3</router-link>
+      <router-link :to="`/b/${bid}/c/4`">card 4</router-link>
     </div>
     <router-view></router-view>
   </div>  

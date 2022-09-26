@@ -19,7 +19,7 @@ const router = new VueRouter({
   routes: [
     { path: '/', component: Home, beforeEnter: requireAuth },
     { path: '/login', component: Login },
-    { path: '/board/:bid', component: Board, children:[
+    { path: '/b/:bid', component: Board, children:[
       {path: 'c/:cid', component: Card }
     ] },
     { path: '*', component: NotFound }
