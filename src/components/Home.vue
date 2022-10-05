@@ -14,7 +14,11 @@
         </router-link>
       </div>
       <div class="board-item board-item-new">
-        <a class="new-board-btn" href="" @click.prevent="openAddBoard">
+        <a
+          class="new-board-btn"
+          href=""
+          @click.prevent="SET_IS_ADD_BOARD(true)"
+        >
           Create new board...
         </a>
       </div>
@@ -29,7 +33,7 @@
 
 <script>
 import { board } from "../api";
-import { mapState } from "vuex";
+import { mapMutations, mapState } from "vuex";
 import AddBoard from "./AddBoard.vue";
 
 export default {
@@ -53,6 +57,7 @@ export default {
     });
   },
   methods: {
+    ...mapMutations(["SET_IS_ADD_BOARD"]),
     fetchData() {
       this.loading = true;
       board
@@ -63,9 +68,6 @@ export default {
         .finally(() => {
           this.loading = false;
         });
-    },
-    openAddBoard() {
-      this.isAddBoard = true;
     },
     onAddBoard(title) {
       //api 호출
