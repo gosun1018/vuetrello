@@ -26,14 +26,12 @@
     <AddBoard
       v-if="isAddBoard"
       @close="isAddBoard = false"
-      @submit="onAddBoard"
     />
   </div>
 </template>
 
 <script>
-import { board } from "../api";
-import { mapMutations, mapState } from "vuex";
+import { mapMutations, mapState, mapActions } from "vuex";
 import AddBoard from "./AddBoard.vue";
 
 export default {
@@ -43,11 +41,15 @@ export default {
   data() {
     return {
       loading: false,
-      boards: [],
       error: ""
     };
   },
-  computed: { ...mapState(["isAddBoard"]) },
+  computed: { 
+    ...mapState({
+      isAddBoard: "isAddBoard",
+      boards: 'boards'
+    }), 
+  },
   created() {
     this.fetchData();
   },
@@ -57,21 +59,17 @@ export default {
     });
   },
   methods: {
-    ...mapMutations(["SET_IS_ADD_BOARD"]),
+    ...mapMutations([
+      "SET_IS_ADD_BOARD"
+    ]),
+    ...mapActions([
+      'FETCH_BOARDS'
+    ]),
     fetchData() {
       this.loading = true;
-      board
-        .fetch()
-        .then(data => {
-          this.boards = data.list;
-        })
-        .finally(() => {
-          this.loading = false;
-        });
-    },
-    onAddBoard(title) {
-      //api 호출
-      this.fetchData()
+      this.FETCH_BOARDS().finally(() => {
+        this.loading = false;
+      });
     }
   }
 };
