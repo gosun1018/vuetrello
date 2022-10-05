@@ -26,7 +26,7 @@
     <AddBoard
       v-if="isAddBoard"
       @close="isAddBoard = false"
-      @submitBoard="onAddBoard"
+      @submit="onAddBoard"
     />
   </div>
 </template>
@@ -71,7 +71,7 @@ export default {
     },
     onAddBoard(title) {
       //api 호출
-      board.create(title).then(() => this.fetchData());
+      this.fetchData()
     }
   }
 };
